@@ -13,7 +13,7 @@ The access to this repository is currently managed by [Alex S](mailto:alex.skond
 ## Python in Vicon Nexus
 Info and instructions goes here
 ---
-## Mircocontroller projects
+## Microcontroller projects
 Info
 ### Arduino projects
 ### C++
