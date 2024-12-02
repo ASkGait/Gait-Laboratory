@@ -21,11 +21,11 @@ Python commands can be executed within Nexus in a few ways.
 
 Firstly, the Python shell can be used to run single commands. This is accessed via the 'Python' tab in Eclipse, and opening the Python shell (see below).
 
-![image.png](pythonShell.png)
+![image.png](pythonShell.PNG)
 
 Secondly, a Python script written in an external editor (such as Notepad, or an IDE such as Spyder) can be run as part of a pipeline within Nexus. To do this, add a 'Data Processing/Run Python Operation' step to the pipeline, selecting the Python script to run by clicking the 3 dots to the side of 'Python Script File' (see below).
 
-![image.png](nexusPipelines1.png)	![image.png](nexusPipelines2.png)
+![image.png](nexusPipelines1.PNG)	![image.png](nexusPipelines2.PNG)
 
 ### 1.2 Using an external IDE (recommended)
 Scripts can also be executed in an external IDE (such as Spyder), provided that a trial is open within Nexus at the same time. Commands that are run within the IDE interact whichever trial is open in Nexus at that time.
