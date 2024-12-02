@@ -105,7 +105,7 @@ instance
 
 This example will demonstrate how information relating to Nexus subject files associated with a trial can be extracted. In the case below, two subjects have been created within a Nexus session:
 
-![image.png](image.png)
+![image.png](nexusSubjects.png)
 
 By running the following command, we can extract the subjects’ information:
 
@@ -183,7 +183,7 @@ plt.plot(croppedTrajZ)
 
 *Output:*
 
-![image.png](image%201.png)
+![image.png](nexusTraj.png)
 
 </aside>
 
