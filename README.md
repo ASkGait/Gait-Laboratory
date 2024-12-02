@@ -7,21 +7,42 @@ A repository for managing Gait Lab projects involving common coding challenges. 
     - Arduino
 
 This private repository can be used as a common starting point for project development, to control versions of in-house projects, and collaborate on project development with colleagues.
-The access to this repository is currently managed by [Alex S](mailto:alex.skondras@gstt.nhs.uk?subject=[GitHub]%20Source%20%Gait20Laboratory) with scope to move to a GitHub oraganisation structure in future.
+The access to this repository is currently managed by [Alex S](mailto:alex.skondras@gstt.nhs.uk?subject=[GitHub]%20Source%20%Gait20Laboratory) with scope to move to a GitHub organisation structure in future.
 
 ---
 ## Python in Vicon Nexus
-## 1. Importing the ViconNexus module
+
+Each install of Vicon Nexus includes a version of Python. Vicon also provide a Nexus Python API and library of Python functions, meaning that Python scripts can be used to interact with and manipulate data within Nexus. The following sections provide guide to getting up and running executing Python scripts with Nexus, a brief overview of the functionality of the Python Nexus library, and some example use cases to help get started.
+
+## 1. How to run Python scripts
+
+### 1.1 Within Nexus
+Python commands can be executed within Nexus in a few ways. 
+
+Firstly, the Python shell can be used to run single commands. This is accessed via the 'Python' tab in Eclipse, and opening the Python shell (see below).
+
+![image.png](pythonShell.png)
+
+Secondly, a Python script written in an external editor (such as Notepad, or an IDE such as Spyder) can be run as part of a pipeline within Nexus. To do this, add a 'Data Processing/Run Python Operation' step to the pipeline, selecting the Python script to run by clicking the 3 dots to the side of 'Python Script File' (see below).
+
+![image.png](nexusPipelines1.png)	![image.png](nexusPipelines2.png)
+
+### 1.2 Using an external IDE (recommended)
+Scripts can also be executed in an external IDE (such as Spyder), provided that a trial is open within Nexus at the same time. Commands that are run within the IDE interact whichever trial is open in Nexus at that time.
+
+The use of an external IDE is recommended for ease of debugging code, and when batch processing trials and exporting outputs to a seperate file format (such as an Excel sheet, .csv file, etc.)
+
+## 2. Importing the ViconNexus module
 
 On Trust machines, include the following code at the start of a Python script to define the system paths required to import the ViconNexus library:
 
 ```python
 # Define file locations of ViconNexus library files
 viconPaths = [
-  #OLD LAPTOPS
+  # For Nexus 2.11 (shouldn't be needed)
   'C:/Program Files (x86)/Vicon/Nexus2.11/SDK/Python',
   'C:/Program Files (x86)/Vicon/Nexus2.11/SDK/Win64',
-  #NEW LAPTOPS (21H2 build)
+  # For Nexus 2.15 (all shared laptops/desktops)
   'C:/Program Files/Vicon/Nexus2.15/Python',
   'C:/Program Files/Vicon/Nexus2.15/SDK/Win64/Python/viconnexusapi',
   'C:/Program Files/Vicon/Nexus2.15/SDK/Win64/Python/viconnexusapi/viconnexusapi',
@@ -40,9 +61,9 @@ import ViconNexus
 
 # Create instance of ViconNexus object
 vicon = ViconNexus.ViconNexus()
-```
+``'
 
-## 2. ViconNexus built-in functions
+## 3. ViconNexus built-in functions
 
 The ViconNexus library includes a variety of built-in functions, which can execute tasks in Nexus to extract and manipulate data. To view the full list of built-in functions, run the following command in a Python console:
 
@@ -99,9 +120,9 @@ instance
      vicon.CreateAnEvent('Patricia', 'Foot Strike', 'Left', 137, 0.0)
 ```
 
-## 3. Quickstart guide to some useful tasks
+## 4. Quickstart guide to some useful tasks
 
-### 3.1 Get Nexus subject information
+### 4.1 Get Nexus subject information
 
 This example will demonstrate how information relating to Nexus subject files associated with a trial can be extracted. In the case below, two subjects have been created within a Nexus session:
 
@@ -148,7 +169,7 @@ print(subject)
 
 </aside>
 
-### 3.2 Reading marker trajectories
+### 4.2 Reading marker trajectories
 
 Marker trajectories can be extracted from a trial in Nexus using command *vicon.GetTrajectory(subject,markerName).* Here, the *subject* argument must be a string containing the name of the corresponding subject created in Nexus. The *markerName* argument must be a string containing the 4 letter label assigned to the marker in Nexus (e.g. ‘LHEE’). For example:
 
@@ -187,7 +208,7 @@ plt.plot(croppedTrajZ)
 
 </aside>
 
-### 3.3 Reading analog data
+### 4.3 Reading analog data
 
 
 
