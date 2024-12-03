@@ -9,6 +9,7 @@ A repository for managing Gait Lab projects involving common coding challenges. 
 This private repository can be used as a common starting point for project development, to control versions of in-house projects, and collaborate on project development with colleagues.
 The access to this repository is currently managed by [Alex S](mailto:alex.skondras@gstt.nhs.uk?subject=[GitHub]%20Source%20%Gait20Laboratory) with scope to move to a GitHub organisation structure in future.
 
+Quickstart Guide
 ---
 ## Python in Vicon Nexus
 
@@ -21,7 +22,7 @@ Python commands can be executed within Nexus in a few ways.
 
 Firstly, the Python shell can be used to run single commands. This is accessed via the 'Python' tab in Eclipse, and opening the Python shell (see below).
 
-![image.png](pythonShell.PNG)
+<img src="pythonShell.PNG" alt="image" width="600"/>
 
 Secondly, a Python script written in an external editor (such as Notepad, or an IDE such as Spyder) can be run as part of a pipeline within Nexus. To do this, add a 'Data Processing/Run Python Operation' step to the pipeline, selecting the Python script to run by clicking the 3 dots to the side of 'Python Script File' (see below).
 
@@ -61,7 +62,7 @@ import ViconNexus
 
 # Create instance of ViconNexus object
 vicon = ViconNexus.ViconNexus()
-``'
+```
 
 ## 3. ViconNexus built-in functions
 
@@ -181,14 +182,14 @@ vicon.GetTrajectory('Mickey Railways','LHEE')
 
 The result is a tuple of length 4. The first element contains the *x* coordinate of the LHEE marker at each frame within the trial. The second and third elements contain the *y* and *z* coordinates respectively. The fourth element contains a boolean value of whether the marker of interest is visible in the corresponding frame. 
 
-*Note: using this command alone, the trajectory will be read across the entire trial, regardless of whether it has been cropped in Nexus.*
+*Note: by using this command alone the trajectory will be read across the entire trial, regardless of whether it has been cropped in Nexus.*
 
 <aside>
-💡
-
+💡 
+	
 **USEFUL EXAMPLE**
 
-Use the following lines to extract the region of interest from a trial in Nexus, then to read and plot the trajectory of the left heel marker within the region of interest in the *z* direction:
+Use the following lines to extract the region of interest from a trial in Nexus, then to read and plot the trajectory in the *z* direction of the left heel marker within the region of interest:
 
 *Input:*
 
@@ -212,7 +213,9 @@ plt.plot(croppedTrajZ)
 
 STILL TO COMPLETE
 
-
+<!---
+your comment goes here
+and here
 ---
 ## Microcontroller projects
 Info
@@ -220,3 +223,4 @@ Info
 ### C++
 ---
 ## Repository Working Rules
+-->
