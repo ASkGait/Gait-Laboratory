@@ -172,7 +172,7 @@ print(subject)
 
 ### 4.2 Reading marker trajectories
 
-Marker trajectories can be extracted from a trial in Nexus using command *vicon.GetTrajectory(subject,markerName).* Here, the *subject* argument must be a string containing the name of the corresponding subject created in Nexus. The *markerName* argument must be a string containing the 4 letter label assigned to the marker in Nexus (e.g. ‘LHEE’). For example:
+Marker trajectories can be extracted from a trial in Nexus using the command *vicon.GetTrajectory(subject,markerName).* Here, the *subject* argument must be a string containing the name of the corresponding subject created in Nexus. The *markerName* argument must be a string containing the 4 letter label assigned to the marker in Nexus (e.g. ‘LHEE’). For example:
 
 *Input:*
 
@@ -194,7 +194,7 @@ Use the following lines to extract the region of interest from a trial in Nexus,
 *Input:*
 
 ```python
->import matplotlib.pyplot as plt
+import matplotlib.pyplot as plt
 
 frameRoi = vicon.GetTrialRegionOfInterest()
 traj = vicon.GetTrajectory('Mickey Railways','LHEE')
@@ -211,7 +211,114 @@ plt.plot(croppedTrajZ)
 
 ### 4.3 Reading analog data
 
-STILL TO COMPLETE
+This example will demonstrate how to read in analog device data from Nexus. 
+
+Here, we have a trial containing force plate and EMG data.
+
+![image.png](nexusDeviceList.png)
+
+Each analog device inside a trial is given a unique ID. These can be accessed using the command *vicon.GetDeviceIDs()*.
+
+*Input:*
+
+```python
+deviceIDs = vicon.GetDeviceIDs()
+print(deviceIDs)
+```
+
+*Output:*
+
+```
+[1, 2, 3, 6]
+```
+
+Details about each device can be accessed using these IDs, with the command *vicon.GetDeviceDetails(deviceID)*.
+
+*Input:*
+
+```python
+fp1Details = vicon.GetDeviceDetails(1) # (ID of force plate 1)
+print(fp1Details)
+```
+
+*Output:*
+
+```
+('Force Plate 1', # Name
+ 'ForcePlate', # Device Type
+ 2160.0, # Sampling rate
+ [1, 2, 3, 4], # Output IDs
+ <viconnexusapi.NexusForcePlate.NexusForcePlate at 0x1b8bc8a3d90>, # Additional info if the device is a forceplate
+ <viconnexusapi.NexusEyeTracker.NexusEyeTracker at 0x1b8bcc51d60>) # Additional info if the device is an eyetracker
+```
+
+Each device may have several outputs (as seen by expanding them in Nexus). In the example above, force plate 1 has the outputs 'Force','Moment','CoP', and 'Raw'. These outputs each have an associated ID (shown in the output of the above example). Details of each output can be accessed with the command *vicon.GetDeviceDetails(deviceID,outputID)*.
+
+*Input:*
+
+```python
+fp1ForceDetails = vicon.GetDeviceOutputDetails(1,1) # (ID of force plate 1, ID of the 'Force' output)
+print(fp1ForceDetails)
+```
+
+*Output:*
+
+```
+('Force', # Output name
+ 'Force', # Output type
+ 'newton', # Unit name
+ True, # Indication of whether the device is in the 'ready' state
+ ['Fx', 'Fy', 'Fz'], # Channel names associated with the output
+ [1, 2, 3]) # Channel IDs associated with the output
+```
+
+Finally, each device output may have several output channels. In this example, the 'Force' output from force plate 1 has the channels 'Fx', 'Fy', 'Fz', with associated channel IDs (shown in the output above). The data from each channel is read as below:
+
+*Input:*
+
+```python
+fp1Fz, ready, rate = vicon.GetDeviceChannel(1,1,3) # (ID of force plate 1, ID of the 'Force' output, ID of the 'Fz' channel)
+plot(fp1Fz)
+print('Ready status: ', ready)
+print('Sampling rate: ',rate)
+```
+
+*Output:*
+
+```
+![image.png](nexusFPplot.png)
+
+Ready status:  True
+Sampling rate:  2160.0
+```
+
+<aside>
+💡 
+	
+**USEFUL EXAMPLE**
+Read and plot the Fz output of force plate 1 (derived in the above example) overlayed on the 'LHEE' marker trajectory (derived in a previous example) 
+
+*Note: The sampling rate of the most analog devices in Nexus is higher than that of the Vicon cameras (usually 2160Hz, as compared to 120Hz). Because of this, each data point within camera data will correspond to 2160/120 = 18 data points in analog data.*
+
+*Input*
+```python
+cameraRate = vicon.GetFrameRate() # Read camera sampling rate
+_,_,analogRate,_,_,_ = vicon.GetDeviceDetails(1) # Read force plate 1 sampling rate
+convRate = int(analogRate/cameraRate) # Conversion between sampling rates of cameras and analog devices
+
+croppedTrajZ = trajZ[frameRoi[0]-1:frameRoi[-1]-1] # LHEE trajectory from previous example, cropped to Nexus region of interest
+croppedfp1Fz = fp1Fz[(frameRoi[0]-1)*convRate:(frameRoi[-1]-1)*convRate] # Fz channel of force plate 1 from previous example, cropped to Nexus region of interest, and differences in sampling rate accounted for
+downsampledfp1Fz = croppedfp1Fz[::convRate] # Downsampled force plate data, only taking every 18th value
+
+plt.plot(croppedTrajZ)
+plt.plot([val*-1 for val in downsampledfp1Fz]) # Plot positive force plate data
+```
+
+*Output:*
+
+```
+![image.png](nexusCombinedPlot.png)
+```
 
 <!---
 your comment goes here
