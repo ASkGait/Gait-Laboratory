@@ -22,11 +22,12 @@ Python commands can be executed within Nexus in a few ways.
 
 Firstly, the Python shell can be used to run single commands. This is accessed via the 'Python' tab in Eclipse, and opening the Python shell (see below).
 
-<img src="pythonShell.PNG" alt="image" width="600"/>
+<img src="pythonShell.PNG" alt="image" width="500"/>
 
 Secondly, a Python script written in an external editor (such as Notepad, or an IDE such as Spyder) can be run as part of a pipeline within Nexus. To do this, add a 'Data Processing/Run Python Operation' step to the pipeline, selecting the Python script to run by clicking the 3 dots to the side of 'Python Script File' (see below).
 
-![image.png](nexusPipelines1.PNG)	![image.png](nexusPipelines2.PNG)
+<img src="nexusPipelines1.PNG" alt="image" width="400"/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<img src="nexusPipelines2.PNG" alt="image" width="400"/>
+
 
 ### 1.2 Using an external IDE (recommended)
 Scripts can also be executed in an external IDE (such as Spyder), provided that a trial is open within Nexus at the same time. Commands that are run within the IDE interact whichever trial is open in Nexus at that time.
@@ -147,6 +148,7 @@ vicon.GetSubjectInfo()
 
 We see the result is a tuple of size 3, with each element corresponding to each subject’s name, labelling template, and status respectively. 
 
+<br>
 <aside>
 💡
 
@@ -169,6 +171,7 @@ print(subject)
 ```
 
 </aside>
+<br>
 
 ### 4.2 Reading marker trajectories
 
@@ -184,6 +187,7 @@ The result is a tuple of length 4. The first element contains the *x* coordinate
 
 *Note: by using this command alone the trajectory will be read across the entire trial, regardless of whether it has been cropped in Nexus.*
 
+<br>
 <aside>
 💡 
 	
@@ -207,7 +211,7 @@ plt.plot(croppedTrajZ)
 
 ![image.png](nexusTraj.png)
 
-</aside>
+<br>
 
 ### 4.3 Reading analog data
 
@@ -215,7 +219,7 @@ This example will demonstrate how to read in analog device data from Nexus.
 
 Here, we have a trial containing force plate and EMG data.
 
-![image.png](nexusDeviceList.png)
+![image.png](nexusDeviceList.PNG)
 
 Each analog device inside a trial is given a unique ID. These can be accessed using the command *vicon.GetDeviceIDs()*.
 
@@ -285,13 +289,14 @@ print('Sampling rate: ',rate)
 
 *Output:*
 
-```
 ![image.png](nexusFPplot.png)
 
+```
 Ready status:  True
 Sampling rate:  2160.0
 ```
 
+<br>
 <aside>
 💡 
 	
@@ -316,9 +321,7 @@ plt.plot([val*-1 for val in downsampledfp1Fz]) # Plot positive force plate data
 
 *Output:*
 
-```
 ![image.png](nexusCombinedPlot.png)
-```
 
 <!---
 your comment goes here
