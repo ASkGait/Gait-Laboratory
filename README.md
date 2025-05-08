@@ -22,12 +22,11 @@ Python commands can be executed within Nexus in a few ways.
 
 Firstly, the Python shell can be used to run single commands. This is accessed via the 'Python' tab in Eclipse, and opening the Python shell (see below).
 
-<img src="Repository Images/pythonShell.PNG" alt="image" width="500"/>
+![image.png](Repository%20Images/pythonShell.png)
 
 Secondly, a Python script written in an external editor (such as Notepad, or an IDE such as Spyder) can be run as part of a pipeline within Nexus. To do this, add a 'Data Processing/Run Python Operation' step to the pipeline, selecting the Python script to run by clicking the 3 dots to the side of 'Python Script File' (see below).
 
-<img src="nexusPipelines1.PNG" alt="image" width="400"/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<img src="nexusPipelines2.PNG" alt="image" width="400"/>
-
+<img src="Repository%20Images/nexusPipelines1.png" alt="image" width="400"/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<img src="Repository%20Images/nexusPipelines2.png" alt="image" width="400"/>
 
 ### 1.2 Using an external IDE (recommended)
 Scripts can also be executed in an external IDE (such as Spyder), provided that a trial is open within Nexus at the same time. Commands that are run within the IDE interact whichever trial is open in Nexus at that time.
@@ -128,7 +127,7 @@ instance
 
 This example will demonstrate how information relating to Nexus subject files associated with a trial can be extracted. In the case below, two subjects have been created within a Nexus session:
 
-![image.png](nexusSubjects.png)
+![image.png](Repository%20Images/nexusSubjects.png)
 
 By running the following command, we can extract the subjects’ information:
 
@@ -209,7 +208,7 @@ plt.plot(croppedTrajZ)
 
 *Output:*
 
-![image.png](nexusTraj.png)
+![image.png](Repository%20Images/nexusTraj.png)
 
 <br>
 
@@ -219,7 +218,7 @@ This example will demonstrate how to read in analog device data from Nexus.
 
 Here, we have a trial containing force plate and EMG data.
 
-![image.png](nexusDeviceList.PNG)
+![image.png](Repository%20Images/nexusDeviceList.PNG)
 
 Each analog device inside a trial is given a unique ID. These can be accessed using the command *vicon.GetDeviceIDs()*.
 
@@ -289,7 +288,7 @@ print('Sampling rate: ',rate)
 
 *Output:*
 
-![image.png](nexusFPplot.png)
+![image.png](Repository%20Images/nexusFPplot.png)
 
 ```
 Ready status:  True
@@ -321,7 +320,7 @@ plt.plot([val*-1 for val in downsampledfp1Fz]) # Plot positive force plate data
 
 *Output:*
 
-![image.png](nexusCombinedPlot.png)
+![image.png](Repository%20Images/nexusCombinedPlot.png)
 
 <!---
 your comment goes here
