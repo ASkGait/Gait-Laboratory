@@ -1,4 +1,4 @@
-# Gait-Laboratory ![logo](https://github.com/ASkGait/Gait-Laboratory/blob/main/LabLogo.png)
+# Gait-Laboratory ![logo](https://raw.githubusercontent.com/ASkGait/Gait-Laboratory/refs/heads/main/Repository%20Images/LabLogo.png)
 A repository for managing Gait Lab projects involving common coding challenges. For example\:
 
 - Python interacting with Vicon Nexus
@@ -22,7 +22,7 @@ Python commands can be executed within Nexus in a few ways.
 
 Firstly, the Python shell can be used to run single commands. This is accessed via the 'Python' tab in Eclipse, and opening the Python shell (see below).
 
-<img src="pythonShell.PNG" alt="image" width="500"/>
+<img src="Repository Images/pythonShell.PNG" alt="image" width="500"/>
 
 Secondly, a Python script written in an external editor (such as Notepad, or an IDE such as Spyder) can be run as part of a pipeline within Nexus. To do this, add a 'Data Processing/Run Python Operation' step to the pipeline, selecting the Python script to run by clicking the 3 dots to the side of 'Python Script File' (see below).
 
